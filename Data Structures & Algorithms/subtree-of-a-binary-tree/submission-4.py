@@ -1,0 +1,13 @@
+class Solution:   
+
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        if not root:
+            return False
+        if self.isSame(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+
+    def isSame(self, s, t):
+        if not s and not t: return True
+        if not s or not t: return False
+        return s.val == t.val and self.isSame(s.left, t.left) and self.isSame(s.right, t.right)
